@@ -4,13 +4,19 @@
 //
 //  Created by Axel Bergiers on 21/04/2024.
 //
+
 import SwiftUI
 
 struct ClientView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlert = false
+    @State private var client: Client
     @ObservedObject var graphQLClient: GraphQLClient
-    var client: Client
+    
+    init(graphQLClient: GraphQLClient, client: Client) {
+        self.graphQLClient = graphQLClient
+        _client = State(initialValue: client)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,7 +32,9 @@ struct ClientView: View {
                     }
                 }
                 Spacer()
-                NavigationLink(destination: EditClientView(client: client)) {
+                NavigationLink(destination: EditClientView(client: client, onSave: { updatedClient in
+                    self.client = updatedClient
+                })) {
                     Text("Edit")
                         .padding(10)
                         .background(Color.blue)
@@ -118,17 +126,8 @@ struct ContactInfoRow: View {
     }
 }
 
-struct EditClientView: View {
-    var client: Client
-
-    var body: some View {
-        Text("Edit Client Details Here")
-            .navigationTitle("Edit Client")
-    }
-}
-
 #Preview {
     NavigationView {
-        ClientView( graphQLClient: GraphQLClient(), client: DummyClients[0])
+        ClientView(graphQLClient: GraphQLClient(), client: DummyClients[0])
     }
 }

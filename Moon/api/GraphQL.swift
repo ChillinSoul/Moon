@@ -106,25 +106,26 @@ class GraphQLClient: ObservableObject {
 
     func updateClient(_ client: Client) {
         let mutation = """
-        mutation Mutation($client: ClientInput!) {
-            updateClient(client: $client) {
-                name
-                firstName
-                lastName
-                email
-                telephone
-                street
-                zipCode
-                country
-                comments
-                balance
-                colisage
-                poids
-            }
+        mutation Mutation($editClientId: ID, $client: ClientInput) {
+          editClient(id: $editClientId, client: $client) {
+            name
+            firstName
+            lastName
+            email
+            telephone
+            street
+            zipCode
+            country
+            comments
+            balance
+            colisage
+            poids
+          }
         }
         """
         
         let variables: [String: Any] = [
+            "editClientId": client.name,
             "client": [
                 "name": client.name,
                 "balance": client.balance,

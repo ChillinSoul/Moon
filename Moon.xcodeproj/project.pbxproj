@@ -22,7 +22,7 @@
 		DF5868982BD5656F000EE5D0 /* ClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868972BD5656F000EE5D0 /* ClientView.swift */; };
 		DF58689B2BD568B8000EE5D0 /* NewClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58689A2BD568B8000EE5D0 /* NewClient.swift */; };
 		DFABADE92BFB4F0700905D69 /* GraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADE82BFB4F0700905D69 /* GraphQL.swift */; };
-		DFABADEC2C13192500905D69 /* EditClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADEB2C13192500905D69 /* EditClient.swift */; };
+		DFABADEE2C131DA300905D69 /* EditClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADED2C131DA300905D69 /* EditClientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +61,7 @@
 		DF5868972BD5656F000EE5D0 /* ClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientView.swift; sourceTree = "<group>"; };
 		DF58689A2BD568B8000EE5D0 /* NewClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClient.swift; sourceTree = "<group>"; };
 		DFABADE82BFB4F0700905D69 /* GraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQL.swift; sourceTree = "<group>"; };
-		DFABADEB2C13192500905D69 /* EditClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClient.swift; sourceTree = "<group>"; };
+		DFABADED2C131DA300905D69 /* EditClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +158,7 @@
 				DF5868912BD55CFA000EE5D0 /* ClientListItem.swift */,
 				DF5868972BD5656F000EE5D0 /* ClientView.swift */,
 				DF58689A2BD568B8000EE5D0 /* NewClient.swift */,
-				DFABADEB2C13192500905D69 /* EditClient.swift */,
+				DFABADED2C131DA300905D69 /* EditClientView.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -310,7 +310,6 @@
 			files = (
 				DF58689B2BD568B8000EE5D0 /* NewClient.swift in Sources */,
 				DF5868662BD55984000EE5D0 /* ContentView.swift in Sources */,
-				DFABADEC2C13192500905D69 /* EditClient.swift in Sources */,
 				DF5868902BD55BCC000EE5D0 /* ClientsView.swift in Sources */,
 				DF5868942BD55D0F000EE5D0 /* Client.swift in Sources */,
 				DF5868922BD55CFA000EE5D0 /* ClientListItem.swift in Sources */,
@@ -318,6 +317,7 @@
 				DF5868962BD561B6000EE5D0 /* Avatar.swift in Sources */,
 				DF5868982BD5656F000EE5D0 /* ClientView.swift in Sources */,
 				DF5868682BD55984000EE5D0 /* Item.swift in Sources */,
+				DFABADEE2C131DA300905D69 /* EditClientView.swift in Sources */,
 				DF5868642BD55984000EE5D0 /* MoonApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
