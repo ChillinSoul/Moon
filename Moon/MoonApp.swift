@@ -25,7 +25,7 @@ struct MoonApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ClientsView()
         }
         .modelContainer(sharedModelContainer)
     }
