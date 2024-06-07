@@ -37,15 +37,22 @@ struct LoginView: View {
                     .padding(.bottom, 20)
                 
                 Button(action: {
-                    login()
-                }) {
-                    Text("Login")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
+                                graphQLClient.login(username: username, password: password) { success, error in
+                                    if success {
+                                        isAuthenticated = true
+                                        UserDefaults.standard.set(Date(), forKey: "lastLoginTimestamp") // Save login timestamp
+                                    } else {
+                                        errorMessage = error!
+                                    }
+                                }
+                            }) {
+                                Text("Login")
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .padding()
                 
                 if !errorMessage.isEmpty {
                     Text(errorMessage)

@@ -8,106 +8,70 @@
 import SwiftUI
 
 struct EditClientView: View {
-    @State private var name: String
-    @State private var lastName: String
-    @State private var firstName: String
-    @State private var email: String
-    @State private var telephone: String
-    @State private var street: String
-    @State private var zipCode: String
-    @State private var country: String
-    @State private var comments: String
-
-    @ObservedObject var graphQLClient = GraphQLClient()
     @Environment(\.presentationMode) var presentationMode
-
-    var client: Client
+    @State private var showImagePicker = false
+    @State private var inputImage: UIImage?
+    @State private var selectedSourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var client: Client
     var onSave: (Client) -> Void
 
     init(client: Client, onSave: @escaping (Client) -> Void) {
-        self.client = client
         self.onSave = onSave
-        _name = State(initialValue: client.name)
-        _lastName = State(initialValue: client.lastName ?? "")
-        _firstName = State(initialValue: client.firstName ?? "")
-        _email = State(initialValue: client.email ?? "")
-        _telephone = State(initialValue: client.telephone ?? "")
-        _street = State(initialValue: client.street ?? "")
-        _zipCode = State(initialValue: client.zipCode ?? "")
-        _country = State(initialValue: client.country ?? "")
-        _comments = State(initialValue: client.comments ?? "")
+        _client = State(initialValue: client)
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    Section(header: Text("Informations")) {
-                        TextField("Désignation", text: $name)
-                        TextField("Nom", text: $lastName)
-                        TextField("Prénom", text: $firstName)
-                        TextField("Email", text: $email)
-                        TextField("Téléphone", text: $telephone)
-                    }
-                    Section(header: Text("Adresse")) {
-                        TextField("Rue", text: $street)
-                        TextField("Code Postal", text: $zipCode)
-                        TextField("Pays", text: $country)
-                    }
-                    Section(header: Text("Commentaires")) {
-                        TextField("Commentaires", text: $comments)
-                    }
+        Form {
+            Section(header: Text("Client Information")) {
+                TextField("Name", text: $client.name)
+                TextField("First Name", text: Binding($client.firstName)!)
+                TextField("Last Name", text: Binding($client.lastName)!)
+                TextField("Email", text: Binding($client.email)!)
+                TextField("Telephone", text: Binding($client.telephone)!)
+                TextField("Zip Code", text: Binding($client.zipCode)!)
+                TextField("Comments", text: Binding($client.comments)!)
+            }
+
+            Section {
+                if let uiImage = inputImage {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 200)
+                } else if let image = loadImage(fileName: client.imageFileName) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 200)
+                } else {
+                    Text("No image selected")
                 }
-                Button(action: {
-                    updateClient()
-                }) {
-                    Text("Enregistrer")
+                
+                Button("Choose Photo") {
+                    selectedSourceType = .photoLibrary
+                    showImagePicker = true
+                }
+                .padding()
+                
+                Button("Take Photo") {
+                    selectedSourceType = .camera
+                    showImagePicker = true
                 }
                 .padding()
             }
-            .navigationBarTitle("Modifier Client", displayMode: .inline)
+
+            Section {
+                Button("Save") {
+                    if let uiImage = inputImage {
+                        _ = saveImage(image: uiImage, fileName: client.imageFileName)
+                    }
+                    onSave(client)
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
         }
-    }
-
-    private func updateClient() {
-        let updatedClient = Client(
-            id: client.id,
-            name: name,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            telephone: telephone,
-            street: street,
-            zipCode: zipCode,
-            country: country,
-            comments: comments,
-            balance: client.balance,
-            colisage: client.colisage,
-            poids: client.poids
-        )
-
-        graphQLClient.updateClient(updatedClient)
-        onSave(updatedClient)
-        presentationMode.wrappedValue.dismiss()
-    }
-}
-
-struct EditClientView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditClientView(client: Client(
-            id: "1",
-            name: "Test Name",
-            firstName: "Test First Name",
-            lastName: "Test Last Name",
-            email: "test@example.com",
-            telephone: "123456789",
-            street: "Test Street",
-            zipCode: "12345",
-            country: "Test Country",
-            comments: "Test Comments",
-            balance: 0,
-            colisage: 0,
-            poids: 0
-        )) { _ in }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(image: $inputImage, sourceType: selectedSourceType)
+        }
     }
 }

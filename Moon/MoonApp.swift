@@ -11,7 +11,9 @@ import SwiftData
 @main
 struct MoonApp: App {
     @StateObject var graphQLClient = GraphQLClient()
-    @State private var isAuthenticated = false
+    @AppStorage("isAuthenticated") private var isAuthenticated = false
+    
+    
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([

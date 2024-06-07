@@ -7,17 +7,19 @@
 
 import SwiftUI
 
+
 struct ClientView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlert = false
     @State private var client: Client
     @ObservedObject var graphQLClient: GraphQLClient
-    
+    @AppStorage("currentClient") private var currentClientData: Data?
+
     init(graphQLClient: GraphQLClient, client: Client) {
         self.graphQLClient = graphQLClient
         _client = State(initialValue: client)
     }
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -34,6 +36,7 @@ struct ClientView: View {
                 Spacer()
                 NavigationLink(destination: EditClientView(client: client, onSave: { updatedClient in
                     self.client = updatedClient
+                    saveCurrentClient()
                 })) {
                     Text("Edit")
                         .padding(10)
@@ -44,6 +47,14 @@ struct ClientView: View {
             }
             .padding(.bottom, 10)
             
+            if let image = loadImage(fileName: client.imageFileName) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 200)
+                    .padding(.bottom, 10)
+            }
+
             VStack(alignment: .leading, spacing: 15) {
                 if let email = client.email {
                     ContactInfoRow(icon: "envelope", text: email, action: {
@@ -91,6 +102,7 @@ struct ClientView: View {
                     primaryButton: .destructive(Text("Delete")) {
                         graphQLClient.deleteClient(client)
                         presentationMode.wrappedValue.dismiss()
+                        currentClientData = nil // Clear the stored client data
                     },
                     secondaryButton: .cancel()
                 )
@@ -98,8 +110,22 @@ struct ClientView: View {
         }
         .padding()
         .navigationTitle("Client Details")
+        .onAppear {
+            saveCurrentClient()
+            UserDefaults.standard.set("ClientView", forKey: "currentView")
+        }
+        .onDisappear {
+            currentClientData = nil // Clear the stored client data
+        }
+    }
+
+    private func saveCurrentClient() {
+        if let encodedClient = try? JSONEncoder().encode(client) {
+            currentClientData = encodedClient
+        }
     }
 }
+
 
 struct ContactInfoRow: View {
     var icon: String

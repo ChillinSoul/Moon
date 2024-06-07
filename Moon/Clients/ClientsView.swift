@@ -63,6 +63,7 @@ struct ClientsView: View {
             }
             .onAppear {
                 clientFetcher.fetchGraphQLData()
+                
             }
         }
     }

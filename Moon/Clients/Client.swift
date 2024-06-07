@@ -20,6 +20,17 @@ class Client: Identifiable, Codable {
     var balance: Float
     var colisage: Int
     var poids: Float
+    
+    var imageFileName: String {
+            return "\(name).png"
+        }
+        
+        var imageURL: URL? {
+            get {
+                let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                return paths[0].appendingPathComponent(imageFileName)
+            }
+        }
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -39,14 +50,14 @@ class Client: Identifiable, Codable {
     init(id: String = UUID().uuidString, name: String, firstName: String? = nil, lastName: String? = nil, email: String? = nil, telephone: String? = nil, street: String? = nil, zipCode: String? = nil, country: String? = nil, comments: String? = nil, balance: Float, colisage: Int, poids: Float) {
         self.id = id
         self.name = name
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.telephone = telephone
-        self.street = street
-        self.zipCode = zipCode
-        self.country = country
-        self.comments = comments
+        self.firstName = firstName ?? ""
+        self.lastName = lastName ?? ""
+        self.email = email ?? ""
+        self.telephone = telephone ?? ""
+        self.street = street ?? ""
+        self.zipCode = zipCode ?? ""
+        self.country = country ?? ""
+        self.comments = comments ?? ""
         self.balance = balance
         self.colisage = colisage
         self.poids = poids

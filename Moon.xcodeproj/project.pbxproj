@@ -24,6 +24,8 @@
 		DFABADE92BFB4F0700905D69 /* GraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADE82BFB4F0700905D69 /* GraphQL.swift */; };
 		DFABADEE2C131DA300905D69 /* EditClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADED2C131DA300905D69 /* EditClientView.swift */; };
 		DFABADF02C13260600905D69 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADEF2C13260600905D69 /* LoginView.swift */; };
+		DFABADF22C1381A200905D69 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADF12C1381A200905D69 /* utils.swift */; };
+		DFABADF52C13828800905D69 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADF42C13828800905D69 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,9 @@
 		DFABADE82BFB4F0700905D69 /* GraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQL.swift; sourceTree = "<group>"; };
 		DFABADED2C131DA300905D69 /* EditClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientView.swift; sourceTree = "<group>"; };
 		DFABADEF2C13260600905D69 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DFABADF12C1381A200905D69 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		DFABADF42C13828800905D69 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		DFABADF62C1384CA00905D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +120,8 @@
 		DF5868622BD55984000EE5D0 /* Moon */ = {
 			isa = PBXGroup;
 			children = (
+				DFABADF62C1384CA00905D69 /* Info.plist */,
+				DFABADF32C13826F00905D69 /* utils */,
 				DFABADE72BFB4EF000905D69 /* api */,
 				DF5868992BD56667000EE5D0 /* Clients */,
 				DF5868632BD55984000EE5D0 /* MoonApp.swift */,
@@ -179,6 +186,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFABADF32C13826F00905D69 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				DFABADF12C1381A200905D69 /* utils.swift */,
+				DFABADF42C13828800905D69 /* ImagePicker.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,9 +330,11 @@
 				DF58689B2BD568B8000EE5D0 /* NewClient.swift in Sources */,
 				DF5868662BD55984000EE5D0 /* ContentView.swift in Sources */,
 				DF5868902BD55BCC000EE5D0 /* ClientsView.swift in Sources */,
+				DFABADF52C13828800905D69 /* ImagePicker.swift in Sources */,
 				DF5868942BD55D0F000EE5D0 /* Client.swift in Sources */,
 				DF5868922BD55CFA000EE5D0 /* ClientListItem.swift in Sources */,
 				DFABADE92BFB4F0700905D69 /* GraphQL.swift in Sources */,
+				DFABADF22C1381A200905D69 /* utils.swift in Sources */,
 				DFABADF02C13260600905D69 /* LoginView.swift in Sources */,
 				DF5868962BD561B6000EE5D0 /* Avatar.swift in Sources */,
 				DF5868982BD5656F000EE5D0 /* ClientView.swift in Sources */,
@@ -489,6 +507,8 @@
 				DEVELOPMENT_TEAM = DG8LTYL74L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moon/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "app needs camera access to set profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -518,6 +538,8 @@
 				DEVELOPMENT_TEAM = DG8LTYL74L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moon/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "app needs camera access to set profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
