@@ -29,7 +29,7 @@ struct ClientsView: View {
                     }
                 }
                 List(clientFetcher.clients) { client in
-                    NavigationLink(destination: ClientView(client: client)) {
+                    NavigationLink(destination: ClientView(graphQLClient: clientFetcher,client: client)) {
                         ClientListItem(client: client)
                     }
                 }

@@ -11,10 +11,6 @@ import Combine
 //MARK: replace this ip with current ip
 let url = URL(string: "http://192.168.0.173:4000/graphql")!
 
-
-import Foundation
-import Combine
-
 class GraphQLClient: ObservableObject {
     @Published var clients: [Client] = []
     
@@ -107,10 +103,11 @@ class GraphQLClient: ObservableObject {
             }
         }
     }
+
     func updateClient(_ client: Client) {
         let mutation = """
         mutation Mutation($client: ClientInput!) {
-            addClient(client: $client) {
+            updateClient(client: $client) {
                 name
                 firstName
                 lastName
@@ -155,16 +152,15 @@ class GraphQLClient: ObservableObject {
     }
 
     func deleteClient(_ client: Client) {
-        
         let mutation = """
-        mutation DeleteClient($id: ID!) {
-            deleteClient(id: $id) {
-                name
-            }
+        mutation Mutation($deleteClientId: ID) {
+          deleteClient(id: $deleteClientId) {
+            name
+          }
         }
         """
         
-        let variables: [String: Any] = ["id": client.name]
+        let variables: [String: Any] = ["deleteClientId": client.name]
         
         performGraphQLRequest(query: mutation, variables: variables) { [weak self] result in
             switch result {
@@ -224,4 +220,3 @@ class GraphQLClient: ObservableObject {
         task.resume()
     }
 }
-
