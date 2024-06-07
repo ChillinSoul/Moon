@@ -10,6 +10,7 @@ import SwiftUI
 struct ClientsView: View {
     @ObservedObject var clientFetcher = GraphQLClient()
     @State private var searchText = ""
+    @AppStorage("isAuthenticated") private var isAuthenticated = false
 
     var body: some View {
         NavigationView {
@@ -40,6 +41,22 @@ struct ClientsView: View {
                         .padding(.horizontal, 20)
 
                     Spacer()
+                    
+                    // Settings Menu
+                    Menu {
+                        Button(action: {
+                            // Log out action
+                            isAuthenticated = false
+                        }) {
+                            Text("Log Out")
+                            Image(systemName: "arrow.backward.circle")
+                        }
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.title)
+                            .padding(.trailing, 20)
+                    }
+                    
                     NavigationLink(destination: NewClient()) {
                         Image(systemName: "plus.circle")
                             .font(.title)

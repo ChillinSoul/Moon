@@ -24,12 +24,38 @@ struct EditClientView: View {
         Form {
             Section(header: Text("Client Information")) {
                 TextField("Name", text: $client.name)
-                TextField("First Name", text: Binding($client.firstName)!)
-                TextField("Last Name", text: Binding($client.lastName)!)
-                TextField("Email", text: Binding($client.email)!)
-                TextField("Telephone", text: Binding($client.telephone)!)
-                TextField("Zip Code", text: Binding($client.zipCode)!)
-                TextField("Comments", text: Binding($client.comments)!)
+                TextField("First Name", text: Binding(
+                    get: { client.firstName ?? "" },
+                    set: { client.firstName = $0.isEmpty ? nil : $0 }
+                ))
+                TextField("Last Name", text: Binding(
+                    get: { client.lastName ?? "" },
+                    set: { client.lastName = $0.isEmpty ? nil : $0 }
+                ))
+                TextField("Email", text: Binding(
+                    get: { client.email ?? "" },
+                    set: { client.email = $0.isEmpty ? nil : $0 }
+                ))
+                TextField("Telephone", text: Binding(
+                    get: { client.telephone ?? "" },
+                    set: { client.telephone = $0.isEmpty ? nil : $0 }
+                ))
+                TextField("Street", text: Binding(
+                    get: { client.street ?? "" },
+                    set: { client.street = $0.isEmpty ? nil : $0 }
+                ))
+                TextField("Zip Code", text: Binding(
+                    get: { client.zipCode ?? "" },
+                    set: { client.zipCode = $0.isEmpty ? nil : $0 }
+                ))
+                TextField("Country", text: Binding(
+                    get: { client.country ?? "" },
+                    set: { client.country = $0.isEmpty ? nil : $0 }
+                ))
+                TextField("Comments", text: Binding(
+                    get: { client.comments ?? "" },
+                    set: { client.comments = $0.isEmpty ? nil : $0 }
+                ))
             }
 
             Section {
@@ -73,5 +99,11 @@ struct EditClientView: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(image: $inputImage, sourceType: selectedSourceType)
         }
+    }
+}
+
+#Preview {
+    NavigationView {
+        EditClientView(client: DummyClients[0], onSave: { _ in })
     }
 }
