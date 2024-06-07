@@ -23,6 +23,14 @@ class GraphQLClient: ObservableObject {
         query Clients {
             clients {
                 name
+                firstName
+                lastName
+                email
+                telephone
+                street
+                zipCode
+                country
+                comments
                 balance
                 colisage
                 poids
@@ -54,9 +62,17 @@ class GraphQLClient: ObservableObject {
 
     func addClient(_ client: Client) {
         let mutation = """
-        mutation AddClient($name: String!, $balance: Float!, $colisage: Int!, $poids: Float!) {
-            addClient(name: $name, balance: $balance, colisage: $colisage, poids: $poids) {
+        mutation Mutation($client: ClientInput!) {
+            addClient(client: $client) {
                 name
+                firstName
+                lastName
+                email
+                telephone
+                street
+                zipCode
+                country
+                comments
                 balance
                 colisage
                 poids
@@ -65,10 +81,20 @@ class GraphQLClient: ObservableObject {
         """
         
         let variables: [String: Any] = [
-            "name": client.name,
-            "balance": client.balance,
-            "colisage": client.colisage,
-            "poids": client.poids
+            "client": [
+                "name": client.name,
+                "balance": client.balance,
+                "colisage": client.colisage,
+                "poids": client.poids,
+                "firstName": client.firstName,
+                "lastName": client.lastName ,
+                "email": client.email ,
+                "telephone": client.telephone ,
+                "street": client.street ,
+                "zipCode": client.zipCode ,
+                "country": client.country ,
+                "comments": client.comments
+            ]
         ]
         
         performGraphQLRequest(query: mutation, variables: variables) { [weak self] result in
@@ -80,12 +106,19 @@ class GraphQLClient: ObservableObject {
             }
         }
     }
-
     func updateClient(_ client: Client) {
         let mutation = """
-        mutation UpdateClient($name: String!, $balance: Float!, $colisage: Int!, $poids: Float!) {
-            updateClient(name: $name, balance: $balance, colisage: $colisage, poids: $poids) {
+        mutation Mutation($client: ClientInput!) {
+            addClient(client: $client) {
                 name
+                firstName
+                lastName
+                email
+                telephone
+                street
+                zipCode
+                country
+                comments
                 balance
                 colisage
                 poids
@@ -94,10 +127,20 @@ class GraphQLClient: ObservableObject {
         """
         
         let variables: [String: Any] = [
-            "name": client.name,
-            "balance": client.balance,
-            "colisage": client.colisage,
-            "poids": client.poids
+            "client": [
+                "name": client.name,
+                "balance": client.balance,
+                "colisage": client.colisage,
+                "poids": client.poids,
+                "firstName": client.firstName,
+                "lastName": client.lastName ,
+                "email": client.email ,
+                "telephone": client.telephone ,
+                "street": client.street ,
+                "zipCode": client.zipCode ,
+                "country": client.country ,
+                "comments": client.comments
+            ]
         ]
         
         performGraphQLRequest(query: mutation, variables: variables) { [weak self] result in
@@ -111,10 +154,11 @@ class GraphQLClient: ObservableObject {
     }
 
     func deleteClient(_ client: Client) {
+        
         let mutation = """
         mutation DeleteClient($id: ID!) {
             deleteClient(id: $id) {
-                id
+                name
             }
         }
         """
