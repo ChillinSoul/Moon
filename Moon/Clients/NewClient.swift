@@ -16,6 +16,7 @@ struct NewClient: View {
                     .padding()
                 Form {
                     Section(header: Text("Informations")) {
+                        TextField("Designiation", text: .constant(""))
                         TextField("Nom", text: .constant(""))
                         TextField("Prénom", text: .constant(""))
                         TextField("Email", text: .constant(""))
