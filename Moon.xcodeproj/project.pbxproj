@@ -15,6 +15,13 @@
 		DF5868772BD55984000EE5D0 /* MoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868762BD55984000EE5D0 /* MoonTests.swift */; };
 		DF5868812BD55984000EE5D0 /* MoonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868802BD55984000EE5D0 /* MoonUITests.swift */; };
 		DF5868832BD55984000EE5D0 /* MoonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868822BD55984000EE5D0 /* MoonUITestsLaunchTests.swift */; };
+		DF5868902BD55BCC000EE5D0 /* ClientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58688F2BD55BCC000EE5D0 /* ClientsView.swift */; };
+		DF5868922BD55CFA000EE5D0 /* ClientListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868912BD55CFA000EE5D0 /* ClientListItem.swift */; };
+		DF5868942BD55D0F000EE5D0 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868932BD55D0F000EE5D0 /* Client.swift */; };
+		DF5868962BD561B6000EE5D0 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868952BD561B6000EE5D0 /* Avatar.swift */; };
+		DF5868982BD5656F000EE5D0 /* ClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5868972BD5656F000EE5D0 /* ClientView.swift */; };
+		DF58689B2BD568B8000EE5D0 /* NewClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF58689A2BD568B8000EE5D0 /* NewClient.swift */; };
+		DFABADE92BFB4F0700905D69 /* GraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABADE82BFB4F0700905D69 /* GraphQL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +53,13 @@
 		DF58687C2BD55984000EE5D0 /* MoonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5868802BD55984000EE5D0 /* MoonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonUITests.swift; sourceTree = "<group>"; };
 		DF5868822BD55984000EE5D0 /* MoonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DF58688F2BD55BCC000EE5D0 /* ClientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsView.swift; sourceTree = "<group>"; };
+		DF5868912BD55CFA000EE5D0 /* ClientListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListItem.swift; sourceTree = "<group>"; };
+		DF5868932BD55D0F000EE5D0 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		DF5868952BD561B6000EE5D0 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		DF5868972BD5656F000EE5D0 /* ClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientView.swift; sourceTree = "<group>"; };
+		DF58689A2BD568B8000EE5D0 /* NewClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClient.swift; sourceTree = "<group>"; };
+		DFABADE82BFB4F0700905D69 /* GraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +94,7 @@
 				DF5868752BD55984000EE5D0 /* MoonTests */,
 				DF58687F2BD55984000EE5D0 /* MoonUITests */,
 				DF5868612BD55984000EE5D0 /* Products */,
+				DFABADEA2BFE143E00905D69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,11 +111,14 @@
 		DF5868622BD55984000EE5D0 /* Moon */ = {
 			isa = PBXGroup;
 			children = (
+				DFABADE72BFB4EF000905D69 /* api */,
+				DF5868992BD56667000EE5D0 /* Clients */,
 				DF5868632BD55984000EE5D0 /* MoonApp.swift */,
 				DF5868652BD55984000EE5D0 /* ContentView.swift */,
 				DF5868672BD55984000EE5D0 /* Item.swift */,
 				DF5868692BD55984000EE5D0 /* Assets.xcassets */,
 				DF58686B2BD55984000EE5D0 /* Preview Content */,
+				DF5868952BD561B6000EE5D0 /* Avatar.swift */,
 			);
 			path = Moon;
 			sourceTree = "<group>";
@@ -128,6 +146,33 @@
 				DF5868822BD55984000EE5D0 /* MoonUITestsLaunchTests.swift */,
 			);
 			path = MoonUITests;
+			sourceTree = "<group>";
+		};
+		DF5868992BD56667000EE5D0 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				DF5868932BD55D0F000EE5D0 /* Client.swift */,
+				DF58688F2BD55BCC000EE5D0 /* ClientsView.swift */,
+				DF5868912BD55CFA000EE5D0 /* ClientListItem.swift */,
+				DF5868972BD5656F000EE5D0 /* ClientView.swift */,
+				DF58689A2BD568B8000EE5D0 /* NewClient.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		DFABADE72BFB4EF000905D69 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				DFABADE82BFB4F0700905D69 /* GraphQL.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		DFABADEA2BFE143E00905D69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +305,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF58689B2BD568B8000EE5D0 /* NewClient.swift in Sources */,
 				DF5868662BD55984000EE5D0 /* ContentView.swift in Sources */,
+				DF5868902BD55BCC000EE5D0 /* ClientsView.swift in Sources */,
+				DF5868942BD55D0F000EE5D0 /* Client.swift in Sources */,
+				DF5868922BD55CFA000EE5D0 /* ClientListItem.swift in Sources */,
+				DFABADE92BFB4F0700905D69 /* GraphQL.swift in Sources */,
+				DF5868962BD561B6000EE5D0 /* Avatar.swift in Sources */,
+				DF5868982BD5656F000EE5D0 /* ClientView.swift in Sources */,
 				DF5868682BD55984000EE5D0 /* Item.swift in Sources */,
 				DF5868642BD55984000EE5D0 /* MoonApp.swift in Sources */,
 			);
