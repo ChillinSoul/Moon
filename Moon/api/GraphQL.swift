@@ -17,8 +17,9 @@ import Combine
 
 class GraphQLClient: ObservableObject {
     @Published var clients: [Client] = []
-
+    
     func fetchGraphQLData() {
+        print("fetching clients")
         let query = """
         query Clients {
             clients {
@@ -163,7 +164,7 @@ class GraphQLClient: ObservableObject {
         }
         """
         
-        let variables: [String: Any] = ["id": client.id]
+        let variables: [String: Any] = ["id": client.name]
         
         performGraphQLRequest(query: mutation, variables: variables) { [weak self] result in
             switch result {

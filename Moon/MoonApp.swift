@@ -25,8 +25,11 @@ struct MoonApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ClientsView()
+            ClientsView().onAppear {
+                print("ModelContainer initialized")
+            }
         }
         .modelContainer(sharedModelContainer)
+        
     }
 }
