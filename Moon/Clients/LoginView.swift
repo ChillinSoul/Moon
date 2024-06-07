@@ -15,37 +15,46 @@ struct LoginView: View {
     @Binding var isAuthenticated: Bool
 
     var body: some View {
-        VStack {
-            TextField("Username", text: $username)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .padding(.bottom, 20)
-
-            SecureField("Password", text: $password)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .padding(.bottom, 20)
-
-            Button(action: {
-                login()
-            }) {
-                Text("Login")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
+        NavigationView{
             
-            if !errorMessage.isEmpty {
-                Text(errorMessage)
-                    .foregroundColor(.red)
+            VStack {
+                Text("MOON")
+                    .font(.custom("Helvetica Neue", size: 80))
+                    .padding(.bottom)
+                Text("Login")
+                    .font(.title)
                     .padding()
+                TextField("Username", text: $username)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.bottom, 20)
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.bottom, 20)
+                
+                Button(action: {
+                    login()
+                }) {
+                    Text("Login")
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
+                if !errorMessage.isEmpty {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .padding()
+                }
             }
-        }
-        .padding()
+            .padding()
+        }.navigationTitle("Login")
     }
 
     private func login() {

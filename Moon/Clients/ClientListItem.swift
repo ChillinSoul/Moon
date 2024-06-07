@@ -18,7 +18,7 @@ struct ClientListItem: View {
                     .font(.headline)
                 HStack {
                     Image(systemName: "dollarsign.circle")
-                    Text("\(client.balance)")
+                    Text("\(client.balance.formatted(.number.precision(.fractionLength(2))))")
                         .font(.subheadline)
                 }
             }

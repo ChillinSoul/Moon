@@ -16,7 +16,7 @@ struct ClientsView: View {
             VStack {
                 HStack {
                     TextField("Search", text: $searchText)
-                        .padding(7)
+                        .padding(10)
                         .padding(.horizontal, 25)
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
@@ -37,24 +37,16 @@ struct ClientsView: View {
                                 }
                             }
                         )
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, 20)
 
                     Spacer()
-                    Button(action: {
-                        clientFetcher.fetchGraphQLData()
-                    }) {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.title)
-                            .padding(.leading, 20)
-                    }
-                    
                     NavigationLink(destination: NewClient()) {
                         Image(systemName: "plus.circle")
                             .font(.title)
                             .padding(.trailing, 20)
                     }
                 }
-                .padding(.top, 10)
+                .padding(.vertical, 10)
 
                 List {
                     ForEach(clientFetcher.clients.filter {
@@ -65,6 +57,9 @@ struct ClientsView: View {
                         }
                     }
                 }
+                .refreshable {
+                    clientFetcher.fetchGraphQLData()
+                }
             }
             .onAppear {
                 clientFetcher.fetchGraphQLData()
@@ -72,7 +67,6 @@ struct ClientsView: View {
         }
     }
 }
-
 
 #Preview {
     ClientsView()

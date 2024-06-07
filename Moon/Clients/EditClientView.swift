@@ -41,9 +41,6 @@ struct EditClientView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Modifier Client")
-                    .font(.title)
-                    .padding()
                 Form {
                     Section(header: Text("Informations")) {
                         TextField("Désignation", text: $name)
