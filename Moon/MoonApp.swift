@@ -10,6 +10,9 @@ import SwiftData
 
 @main
 struct MoonApp: App {
+    @StateObject var graphQLClient = GraphQLClient()
+    @State private var isAuthenticated = false
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,11 +28,13 @@ struct MoonApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ClientsView().onAppear {
-                print("ModelContainer initialized")
+            if isAuthenticated {
+                ClientsView()
+                    .environmentObject(graphQLClient)
+            } else {
+                LoginView(graphQLClient: graphQLClient, isAuthenticated: $isAuthenticated)
             }
         }
         .modelContainer(sharedModelContainer)
-        
     }
 }
