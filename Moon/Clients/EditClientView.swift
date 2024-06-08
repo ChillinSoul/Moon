@@ -32,6 +32,8 @@ struct EditClientView: View {
                     get: { client.lastName ?? "" },
                     set: { client.lastName = $0.isEmpty ? nil : $0 }
                 ))
+            }
+            Section(header: Text("Contact")) {
                 TextField("Email", text: Binding(
                     get: { client.email ?? "" },
                     set: { client.email = $0.isEmpty ? nil : $0 }
@@ -40,6 +42,8 @@ struct EditClientView: View {
                     get: { client.telephone ?? "" },
                     set: { client.telephone = $0.isEmpty ? nil : $0 }
                 ))
+            }
+                    Section(header: Text("Adresse")) {
                 TextField("Street", text: Binding(
                     get: { client.street ?? "" },
                     set: { client.street = $0.isEmpty ? nil : $0 }

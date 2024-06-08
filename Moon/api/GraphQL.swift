@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 //MARK: replace this IP with the current IP
-let url = URL(string: "http://192.168.0.173:4000/graphql")!
+let url = URL(string: "http://172.17.32.73:4000/graphql")!
 
 class GraphQLClient: ObservableObject {
     @Published var clients: [Client] = []
@@ -36,7 +36,7 @@ class GraphQLClient: ObservableObject {
             case .success(let data):
                 if let errors = data["errors"] as? [[String: Any]], let errorMessage = errors.first?["message"] as? String {
                     completion(false, errorMessage)
-                } else if let loginData = data["data"] as? [String: Any], // Ensure you're accessing the "data" field correctly
+                } else if let loginData = data["data"] as? [String: Any],
                           let login = loginData["login"] as? [String: Any],
                           let id = login["ID"] as? String,
                           let token = login["LAST_TOKEN"] as? String,
@@ -80,7 +80,7 @@ class GraphQLClient: ObservableObject {
             switch result {
             case .success(let data):
                 do {
-                    if let dataDict = data["data"] as? [String: Any], // Ensure accessing the "data" field
+                    if let dataDict = data["data"] as? [String: Any],
                        let clientsArray = dataDict["clients"] as? [[String: Any]] {
                         let jsonData = try JSONSerialization.data(withJSONObject: clientsArray, options: [])
                         let clients = try JSONDecoder().decode([Client].self, from: jsonData)
@@ -192,7 +192,7 @@ class GraphQLClient: ObservableObject {
         performGraphQLRequest(query: mutation, variables: variables) { [weak self] result in
             switch result {
             case .success(let data):
-                if let dataDict = data["data"] as? [String: Any], // Ensure accessing the "data" field
+                if let dataDict = data["data"] as? [String: Any],
                    dataDict["editClient"] != nil {
                     self?.fetchGraphQLData()
                 } else {
@@ -219,7 +219,7 @@ class GraphQLClient: ObservableObject {
         performGraphQLRequest(query: mutation, variables: variables) { [weak self] result in
             switch result {
             case .success(let data):
-                if let dataDict = data["data"] as? [String: Any], // Ensure accessing the "data" field
+                if let dataDict = data["data"] as? [String: Any], 
                    dataDict["deleteClient"] != nil {
                     self?.fetchGraphQLData()
                 } else {
